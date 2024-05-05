@@ -1,0 +1,86 @@
+﻿<Window x:Class="_3dLight.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_3dLight"
+        xmlns:wft3d="WFTools3D"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Style="{StaticResource MaterialDesignWindow}"
+        WindowState="Maximized"
+        Title="MainWindow"  Height="600" Width="900"
+        FocusManager.FocusedElement="{Binding ElementName=scene}">
+    <Grid>
+       
+        <wft3d:Scene3D    x:Name="scene"/>
+        <Viewbox Opacity="0.7"  MaxWidth="300" VerticalAlignment="Top" HorizontalAlignment="Right">
+            <StackPanel  ZIndex="100"  HorizontalAlignment="Right">
+
+                <Label Content="Move light:" FontSize="30" FontWeight="Bold" FontFamily="Times New Roman" VerticalAlignment="Center" />
+
+                <Label Content="X:" FontSize="18" FontWeight="Bold" FontFamily="Times New Roman" VerticalAlignment="Center" />
+                <DockPanel VerticalAlignment="Center" Margin="10">
+                    <TextBox Text="{Binding ElementName=transX, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Center" Width="40" FontFamily="Times New Roman" FontSize="14"/>
+                    <Slider ValueChanged="transX_ValueChanged" Minimum="-7" Maximum="7" Value="3" TickPlacement="BottomRight" TickFrequency="0.1" IsSnapToTickEnabled="True" Name="transX"
+                    Orientation="Horizontal"/>
+                </DockPanel>
+                <Label Content="Y:" FontSize="18" FontWeight="Bold" FontFamily="Times New Roman" VerticalAlignment="Center" />
+                <DockPanel VerticalAlignment="Center" Margin="10">
+                    <TextBox Text="{Binding ElementName=transY, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Center" Width="40" FontFamily="Times New Roman" FontSize="14"/>
+                    <Slider ValueChanged="transY_ValueChanged" Minimum="-7" Maximum="7"  TickPlacement="BottomRight" TickFrequency="0.1" IsSnapToTickEnabled="True" Name="transY"
+                    Orientation="Horizontal"/>
+                </DockPanel>
+                <Label Content="Z:" FontSize="18" FontWeight="Bold" FontFamily="Times New Roman" VerticalAlignment="Center" />
+                <DockPanel VerticalAlignment="Center" Margin="10">
+                    <TextBox Text="{Binding ElementName=transZ, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Center" Width="40" FontFamily="Times New Roman" FontSize="14"/>
+                    <Slider ValueChanged="transZ_ValueChanged" Minimum="-7" Maximum="7"  TickPlacement="BottomRight" TickFrequency="0.1" IsSnapToTickEnabled="True" Name="transZ"
+                    Orientation="Horizontal"/>
+                </DockPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Light:" FontSize="18" FontWeight="Bold" FontFamily="Times New Roman" VerticalAlignment="Center" />
+                    <ToggleButton
+                        Unchecked="ToggleButton_OnUnchecked"
+                        Checked="ToggleButton_OnChecked"
+                        materialDesign:ToggleButtonAssist.OnContent="{materialDesign:PackIcon Kind=LightbulbVariantOutline}"
+                        Content="{materialDesign:PackIcon Kind=LightbulbVariant}"
+                        Style="{StaticResource MaterialDesignActionToggleButton}"
+                        ToolTip="MaterialDesignActionLightToggleButton"
+                    />
+                </StackPanel>
+               
+            </StackPanel>
+        </Viewbox>
+        <Viewbox Opacity="0.7"  MaxWidth="300"  VerticalAlignment="Top"  HorizontalAlignment="Left">
+            <StackPanel>
+            <Label Content="Cube" FontSize="30" FontWeight="Bold" FontFamily="Times New Roman" VerticalAlignment="Center" />
+
+            <Label Content="Rotate X:" FontSize="18" FontWeight="Bold" FontFamily="Times New Roman" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <DockPanel VerticalAlignment="Center" Margin="10">
+                <TextBox Text="{Binding ElementName=angX, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Center" Width="40" FontFamily="Times New Roman" FontSize="14"/>
+                    <Slider Width="100" ValueChanged="angX_ValueChanged" Minimum="-180" Maximum="180" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" Name="angX"
+                            Orientation="Horizontal"/>
+            </DockPanel>
+            <Label Content="Rotate Y:" FontSize="18" FontWeight="Bold" FontFamily="Times New Roman" VerticalAlignment="Center" />
+            <DockPanel VerticalAlignment="Center" Margin="10">
+                <TextBox Text="{Binding ElementName=angY, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Center" Width="40" FontFamily="Times New Roman" FontSize="14"/>
+                <Slider Width="100" ValueChanged="angY_ValueChanged" Minimum="-180" Maximum="180" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" Name="angY"
+        Orientation="Horizontal"/>
+            </DockPanel>
+            <Label Content="Rotate Z:" FontSize="18" FontWeight="Bold" FontFamily="Times New Roman" VerticalAlignment="Center" />
+            <DockPanel VerticalAlignment="Center" Margin="10">
+                <TextBox Text="{Binding ElementName=angZ, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Center" Width="40" FontFamily="Times New Roman" FontSize="14"/>
+                    <Slider Width="100" ValueChanged="angZ_ValueChanged" Minimum="-180" Maximum="180"  TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" Name="angZ"
+                            Orientation="Horizontal"/>
+            </DockPanel>
+            <Label Content="Scale:" FontSize="18" FontWeight="Bold" FontFamily="Times New Roman" VerticalAlignment="Center" />
+            <DockPanel VerticalAlignment="Center" Margin="10">
+                <TextBox Text="{Binding ElementName=scale, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Center" Width="40" FontFamily="Times New Roman" FontSize="14"/>
+                <Slider Value="1" ValueChanged="Scale_OnValueChanged" Minimum="0.1" Maximum="4"  TickPlacement="BottomRight" TickFrequency="0.1" IsSnapToTickEnabled="True" Name="scale"
+                        Orientation="Horizontal"/>
+            </DockPanel>
+            </StackPanel>
+        </Viewbox>
+    </Grid>
+    
+</Window>
